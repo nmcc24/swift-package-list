@@ -184,10 +184,7 @@ extension PackageResolved {
             
             let packageSource: PackageSource?
             switch pin.kind {
-            case .localSourceControl:
-                let url = URL(fileURLWithPath: pin.location)
-                packageSource = PackageSource(url: url)
-            case .remoteSourceControl:
+            case .localSourceControl, .remoteSourceControl:
                 packageSource = checkouts.packageSource(location: pin.location)
             case .registry:
                 packageSource = registryDownloads.packageSource(identity: pin.identity, version: pin.state.version)
